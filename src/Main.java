@@ -1,3 +1,4 @@
+import factory.SpacecraftFactory;
 import model.Spacecraft;
 
 import java.util.ArrayList;
@@ -11,15 +12,13 @@ public class Main {
 
         boolean exit = false;
         while (!exit) {
-            Scanner scanner = new Scanner(System.in);
-            System.out.println("Menu: 1. Show Inventory | 2. Search spacecraft | 3. Create spacecraft | 4. Delete spacecraft | 5. Update spacecraft | 0. Exit");
-            int menuChoice = scanner.nextInt();
+            int menuChoice = menu("Menu: 1. Show Inventory | 2. Search spacecraft | 3. Create spacecraft | 4. Delete spacecraft | 5. Update spacecraft | 0. Exit");
             switch (menuChoice) {
                 case 1 -> showInventory(Inventory.getSpacecrafts());
                 case 2 -> searchSpacecraft();
-//                case 3 -> createSpacecraft();
-//                case 4 -> deleteSpacecraft();
-//                case 5 -> updateSpacecraft();
+                case 3 -> createSpacecraft();
+                case 4 -> deleteSpacecraft();
+                case 5 -> updateSpacecraft();
                 case 0 -> exit = true;
                 default -> System.out.println("Unknown menu option");
             }
@@ -27,19 +26,17 @@ public class Main {
     }
 
     private static void showInventory(ArrayList<Spacecraft> spacecrafts) {
-        // print inventory // add pagination later
-        System.out.println("*inserte el inventario aquí*");
+        // TODO: add pagination
+        System.out.println("SPACECRAFT INVENTORY:");
         for (int i = 0; i < spacecrafts.size(); i++) {
             Spacecraft sc = spacecrafts.get(i);
-            System.out.println(i + " | name: " + sc.name + " | type: " + sc.type);
+            System.out.println(i + " | " + sc);
         }
     }
 
     private static void searchSpacecraft() {
 //        String[] searchOptions = {"name", "launchDate", "endOfServiceDate", "active", "combustibleType", "weight", "thrust", "height", "speed"};
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("What type of spacecraft do you want to search? : 1. Launch | 2. NonTripulated | 3. Tripulated | 4. Orbiter | 5. Probe");
-        int menuChoice = scanner.nextInt();
+        int menuChoice = menu("What type of spacecraft do you want to search? : 1. Launch | 2. NonTripulated | 3. Tripulated | 4. Orbiter | 5. Probe");
         switch (menuChoice) {
             case 1 -> showInventory(Inventory.searchItem("launch"));
             case 2 -> showInventory(Inventory.searchItem("nontripulated"));
@@ -47,5 +44,34 @@ public class Main {
             case 4 -> showInventory(Inventory.searchItem("orbiter"));
             case 5 -> showInventory(Inventory.searchItem("probe"));
         }
+    }
+
+    private static void createSpacecraft() {
+        int menuChoice = menu("What type of spacecraft do you want to register? : 1. Launch | 2. NonTripulated | 3. Tripulated | 4. Orbiter | 5. Probe");
+        switch (menuChoice) {
+            case 1 -> SpacecraftFactory.createSpacecraft("launch");
+            case 2 -> SpacecraftFactory.createSpacecraft("nontripulated");
+            case 3 -> SpacecraftFactory.createSpacecraft("tripulated");
+            case 4 -> SpacecraftFactory.createSpacecraft("orbiter");
+            case 5 -> SpacecraftFactory.createSpacecraft("probe");
+        }
+    }
+
+    private static void deleteSpacecraft() {
+        int deleteIndex = menu("Type the number of the spacecraft you want to delete? : ");
+//        Inventory.removeItem(Inventory.getSpacecrafts().get(deleteIndex));
+        Inventory.getSpacecrafts().remove(deleteIndex);
+    }
+
+    private static void updateSpacecraft() {
+        int updateIndex = menu("Type the number of the spacecraft you want to delete? : ");
+        Spacecraft newSpacecraft = SpacecraftFactory.createSpacecraft(Inventory.getSpacecrafts().get(updateIndex).type);
+        Inventory.updateItem(Inventory.getSpacecrafts().get(updateIndex), newSpacecraft);
+    }
+
+    private static int menu(String prompt) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(prompt);
+        return scanner.nextInt();
     }
 }
