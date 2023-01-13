@@ -3,7 +3,8 @@ package model;
 import java.time.LocalDate;
 
 abstract public class Spacecraft {
-    String name;
+    public String type;
+    public String name;
     LocalDate launchDate;
     LocalDate endOfServiceDate;
     boolean active;
@@ -24,5 +25,8 @@ abstract public class Spacecraft {
         endOfServiceDate = LocalDate.now();
     }
 
+    public Spacecraft(String name) {
+        this.name = name;
+    }
 }
 
