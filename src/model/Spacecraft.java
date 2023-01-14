@@ -7,7 +7,7 @@ abstract public class Spacecraft {
     public String name;
     LocalDate launchDate;
     LocalDate endOfServiceDate;
-    boolean active = LocalDate.now().isBefore(endOfServiceDate);
+    boolean active;
     String combustibleType;
     int weight;
     int thrust;
@@ -36,6 +36,8 @@ abstract public class Spacecraft {
         this.objective = objective;
         this.fuelLevel = fuelLevel;
         this.speed = speed;
+
+        active = LocalDate.now().isBefore(endOfServiceDate);
     }
 
     @Override

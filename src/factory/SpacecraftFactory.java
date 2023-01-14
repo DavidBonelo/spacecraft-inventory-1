@@ -20,7 +20,7 @@ public class SpacecraftFactory {
         int height = Integer.parseInt(read("Insert the height of the spacecraft (number): "));
         String objective = read("Insert the objective of the spacecraft: ");
         int fuelLevel = Integer.parseInt(read("Insert the fuelLevel of the spacecraft (number): "));
-        int speed = Integer.parseInt(read("Insert the speed of the spacecraft: "));
+        int speed = Integer.parseInt(read("Insert the speed of the spacecraft (number) : "));
 
         switch (type) {
             case "launch" -> {

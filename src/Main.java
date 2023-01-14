@@ -32,6 +32,7 @@ public class Main {
             Spacecraft sc = spacecrafts.get(i);
             System.out.println(i + " | " + sc);
         }
+        System.out.println();
     }
 
     private static void searchSpacecraft() {
@@ -49,11 +50,11 @@ public class Main {
     private static void createSpacecraft() {
         int menuChoice = menu("What type of spacecraft do you want to register? : 1. Launch | 2. NonTripulated | 3. Tripulated | 4. Orbiter | 5. Probe");
         switch (menuChoice) {
-            case 1 -> SpacecraftFactory.createSpacecraft("launch");
-            case 2 -> SpacecraftFactory.createSpacecraft("nontripulated");
-            case 3 -> SpacecraftFactory.createSpacecraft("tripulated");
-            case 4 -> SpacecraftFactory.createSpacecraft("orbiter");
-            case 5 -> SpacecraftFactory.createSpacecraft("probe");
+            case 1 -> Inventory.addItem(SpacecraftFactory.createSpacecraft("launch"));
+            case 2 -> Inventory.addItem(SpacecraftFactory.createSpacecraft("nontripulated"));
+            case 3 -> Inventory.addItem(SpacecraftFactory.createSpacecraft("tripulated"));
+            case 4 -> Inventory.addItem(SpacecraftFactory.createSpacecraft("orbiter"));
+            case 5 -> Inventory.addItem(SpacecraftFactory.createSpacecraft("probe"));
         }
     }
 
@@ -64,7 +65,7 @@ public class Main {
     }
 
     private static void updateSpacecraft() {
-        int updateIndex = menu("Type the number of the spacecraft you want to delete? : ");
+        int updateIndex = menu("Type the number of the spacecraft you want to update? : ");
         Spacecraft newSpacecraft = SpacecraftFactory.createSpacecraft(Inventory.getSpacecrafts().get(updateIndex).type);
         Inventory.updateItem(Inventory.getSpacecrafts().get(updateIndex), newSpacecraft);
     }
