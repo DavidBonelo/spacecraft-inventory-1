@@ -7,7 +7,7 @@ public class LaunchSpacecraft extends Spacecraft {
 
     public LaunchSpacecraft(String name, LocalDate launchDate, LocalDate endOfServiceDate, String combustibleType, int weight, int thrust, int height, String objective, int fuelLevel, int speed, int payload) {
         super(name, launchDate, endOfServiceDate, combustibleType, weight, thrust, height, objective, fuelLevel, speed);
-        type = "launch";
+        type = SpacecraftType.LAUNCH;
         this.payload = payload;
     }
 

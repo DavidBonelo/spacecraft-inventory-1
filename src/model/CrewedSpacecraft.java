@@ -2,12 +2,12 @@ package model;
 
 import java.time.LocalDate;
 
-public class TripulatedSpacecraft extends Spacecraft {
+public class CrewedSpacecraft extends Spacecraft {
     int passengers;
 
-    public TripulatedSpacecraft(String name, LocalDate launchDate, LocalDate endOfServiceDate, String combustibleType, int weight, int thrust, int height, String objective, int fuelLevel, int speed, int passengers) {
+    public CrewedSpacecraft(String name, LocalDate launchDate, LocalDate endOfServiceDate, String combustibleType, int weight, int thrust, int height, String objective, int fuelLevel, int speed, int passengers) {
         super(name, launchDate, endOfServiceDate, combustibleType, weight, thrust, height, objective, fuelLevel, speed);
-        type = "tripulated";
+        type = SpacecraftType.CREWED;
         this.passengers = passengers;
     }
 

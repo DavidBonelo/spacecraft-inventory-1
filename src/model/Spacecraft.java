@@ -1,13 +1,12 @@
 package model;
 
 import java.time.LocalDate;
-
 /**
  * Base class for the spacecrafts
  */
 abstract public class Spacecraft {
-    public String type;
-    public String name;
+    public SpacecraftType type;
+    String name;
     LocalDate launchDate;
     LocalDate endOfServiceDate;
     boolean active;

@@ -1,5 +1,6 @@
 import factory.SpacecraftFactory;
 import model.Spacecraft;
+import model.SpacecraftType;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -37,30 +38,27 @@ public class Main {
 
     private static void searchSpacecraft() {
 //        String[] searchOptions = {"name", "launchDate", "endOfServiceDate", "active", "combustibleType", "weight", "thrust", "height", "speed"};
-        int menuChoice = menu("What type of spacecraft do you want to search? : 1. Launch | 2. NonTripulated | 3. Tripulated | 4. Orbiter | 5. Probe");
+        int menuChoice = menu("What type of spacecraft do you want to search? : 1. Launch | 2. UnCrewed | 3. Crewed | 4. Orbiter");
         switch (menuChoice) {
-            case 1 -> showInventory(Inventory.searchItem("launch"));
-            case 2 -> showInventory(Inventory.searchItem("nontripulated"));
-            case 3 -> showInventory(Inventory.searchItem("tripulated"));
-            case 4 -> showInventory(Inventory.searchItem("orbiter"));
-            case 5 -> showInventory(Inventory.searchItem("probe"));
+            case 1 -> showInventory(Inventory.searchItem(SpacecraftType.LAUNCH));
+            case 2 -> showInventory(Inventory.searchItem(SpacecraftType.UNCREWED));
+            case 3 -> showInventory(Inventory.searchItem(SpacecraftType.CREWED));
+            case 4 -> showInventory(Inventory.searchItem(SpacecraftType.ORBITER));
         }
     }
 
     private static void createSpacecraft() {
-        int menuChoice = menu("What type of spacecraft do you want to register? : 1. Launch | 2. NonTripulated | 3. Tripulated | 4. Orbiter | 5. Probe");
+        int menuChoice = menu("What type of spacecraft do you want to register? : 1. Launch | 2. UnCrewed | 3. Crewed | 4. Orbiter ");
         switch (menuChoice) {
-            case 1 -> Inventory.addItem(SpacecraftFactory.createSpacecraft("launch"));
-            case 2 -> Inventory.addItem(SpacecraftFactory.createSpacecraft("nontripulated"));
-            case 3 -> Inventory.addItem(SpacecraftFactory.createSpacecraft("tripulated"));
-            case 4 -> Inventory.addItem(SpacecraftFactory.createSpacecraft("orbiter"));
-            case 5 -> Inventory.addItem(SpacecraftFactory.createSpacecraft("probe"));
+            case 1 -> Inventory.addItem(SpacecraftFactory.createSpacecraft(SpacecraftType.LAUNCH));
+            case 2 -> Inventory.addItem(SpacecraftFactory.createSpacecraft(SpacecraftType.UNCREWED));
+            case 3 -> Inventory.addItem(SpacecraftFactory.createSpacecraft(SpacecraftType.CREWED));
+            case 4 -> Inventory.addItem(SpacecraftFactory.createSpacecraft(SpacecraftType.ORBITER));
         }
     }
 
     private static void deleteSpacecraft() {
         int deleteIndex = menu("Type the number of the spacecraft you want to delete? : ") - 1;
-//        Inventory.removeItem(Inventory.getSpacecrafts().get(deleteIndex));
         Inventory.getSpacecrafts().remove(deleteIndex);
     }
 

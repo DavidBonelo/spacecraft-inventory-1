@@ -8,11 +8,9 @@ import java.util.Scanner;
 public class SpacecraftFactory {
     /**
      * Class that handles the creation of Spacecrafts child clases
-     * @param type the types are: "launch", "notripulated", "tripulated", "orbiter".
+     * @param type the type uses the enumn SpacecraftType.
      */
-    public static Spacecraft createSpacecraft(String type) {
-        type = type.toLowerCase();
-
+    public static Spacecraft createSpacecraft(SpacecraftType type) {
 //        TODO: validate inputs
 //        Common fields of the Spacecraft class
         String name = read("Insert the name of the spacecraft: ");
@@ -28,20 +26,20 @@ public class SpacecraftFactory {
 
 //        particular fields of the Spacecraft child classes and creation
         switch (type) {
-            case "launch" -> {
+            case LAUNCH -> {
                 int payload = Integer.parseInt(read("Insert the payload of the spacecraft (number): "));
                 return new LaunchSpacecraft(name, launchDate, endOfServiceDate, combustibleType, weight, thrust, height, objective, fuelLevel, speed, payload);
             }
-            case "nontripulated" -> {
+            case UNCREWED -> {
                 int numRoboticArms = Integer.parseInt(read("Insert the numRoboticArms of the spacecraft (number): "));
                 String typeSensors = read("Insert the type of sensors in the spacecraft : ");
-                return new NonTripulatedSpacecraft(name, launchDate, endOfServiceDate, combustibleType, weight, thrust, height, objective, fuelLevel, speed, numRoboticArms, typeSensors);
+                return new UnCrewedSpacecraft(name, launchDate, endOfServiceDate, combustibleType, weight, thrust, height, objective, fuelLevel, speed, numRoboticArms, typeSensors);
             }
-            case "tripulated" -> {
+            case CREWED -> {
                 int passengers = Integer.parseInt(read("Insert the number of passengers of the spacecraft (number): "));
-                return new TripulatedSpacecraft(name, launchDate, endOfServiceDate, combustibleType, weight, thrust, height, objective, fuelLevel, speed, passengers);
+                return new CrewedSpacecraft(name, launchDate, endOfServiceDate, combustibleType, weight, thrust, height, objective, fuelLevel, speed, passengers);
             }
-            case "orbiter" -> {
+            case ORBITER -> {
                 int altitude = Integer.parseInt(read("Insert the altitude of the spacecraft (number): "));
                 long orbitTime = Long.parseLong(read("Insert the orbitTime of the spacecraft (number): "));
                 String target = read("Insert the target of the spacecraft: ");
