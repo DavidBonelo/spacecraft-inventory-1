@@ -32,7 +32,7 @@ public class SpacecraftFactory {
                 int payload = Integer.parseInt(read("Insert the payload of the spacecraft (number): "));
                 return new LaunchSpacecraft(name, launchDate, endOfServiceDate, combustibleType, weight, thrust, height, objective, fuelLevel, speed, payload);
             }
-            case "notripulated" -> {
+            case "nontripulated" -> {
                 int numRoboticArms = Integer.parseInt(read("Insert the numRoboticArms of the spacecraft (number): "));
                 String typeSensors = read("Insert the type of sensors in the spacecraft : ");
                 return new NonTripulatedSpacecraft(name, launchDate, endOfServiceDate, combustibleType, weight, thrust, height, objective, fuelLevel, speed, numRoboticArms, typeSensors);
