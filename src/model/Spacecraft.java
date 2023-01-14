@@ -2,6 +2,9 @@ package model;
 
 import java.time.LocalDate;
 
+/**
+ * Base class for the spacecrafts
+ */
 abstract public class Spacecraft {
     public String type;
     public String name;
@@ -25,7 +28,7 @@ abstract public class Spacecraft {
         endOfServiceDate = LocalDate.now();
     }
 
-    public Spacecraft(String name, LocalDate launchDate,LocalDate endOfServiceDate, String combustibleType, int weight, int thrust, int height, String objective, int fuelLevel, int speed) {
+    public Spacecraft(String name, LocalDate launchDate, LocalDate endOfServiceDate, String combustibleType, int weight, int thrust, int height, String objective, int fuelLevel, int speed) {
         this.name = name;
         this.launchDate = launchDate;
         this.endOfServiceDate = endOfServiceDate;
@@ -37,7 +40,7 @@ abstract public class Spacecraft {
         this.fuelLevel = fuelLevel;
         this.speed = speed;
 
-        active = LocalDate.now().isBefore(endOfServiceDate);
+        active = endOfServiceDate != null && LocalDate.now().isBefore(endOfServiceDate);
     }
 
     @Override

@@ -30,7 +30,7 @@ public class Main {
         System.out.println("SPACECRAFT INVENTORY:");
         for (int i = 0; i < spacecrafts.size(); i++) {
             Spacecraft sc = spacecrafts.get(i);
-            System.out.println(i + " | " + sc);
+            System.out.println(i + 1 + " | " + sc); // i+1 to start with 1 instead of 0
         }
         System.out.println();
     }
@@ -59,13 +59,13 @@ public class Main {
     }
 
     private static void deleteSpacecraft() {
-        int deleteIndex = menu("Type the number of the spacecraft you want to delete? : ");
+        int deleteIndex = menu("Type the number of the spacecraft you want to delete? : ") - 1;
 //        Inventory.removeItem(Inventory.getSpacecrafts().get(deleteIndex));
         Inventory.getSpacecrafts().remove(deleteIndex);
     }
 
     private static void updateSpacecraft() {
-        int updateIndex = menu("Type the number of the spacecraft you want to update? : ");
+        int updateIndex = menu("Type the number of the spacecraft you want to update? : ") - 1;
         Spacecraft newSpacecraft = SpacecraftFactory.createSpacecraft(Inventory.getSpacecrafts().get(updateIndex).type);
         Inventory.updateItem(Inventory.getSpacecrafts().get(updateIndex), newSpacecraft);
     }

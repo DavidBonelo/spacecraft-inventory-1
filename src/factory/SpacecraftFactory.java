@@ -7,10 +7,14 @@ import java.util.Scanner;
 
 public class SpacecraftFactory {
     /**
+     * Class that handles the creation of Spacecrafts child clases
      * @param type the types are: "launch", "notripulated", "tripulated", "orbiter".
      */
     public static Spacecraft createSpacecraft(String type) {
         type = type.toLowerCase();
+
+//        TODO: validate inputs
+//        Common fields of the Spacecraft class
         String name = read("Insert the name of the spacecraft: ");
         LocalDate launchDate = LocalDate.parse(read("Insert the launch date of the spacecraft (YYYY-MM-DD): "));
         LocalDate endOfServiceDate = LocalDate.parse(read("Insert the end of service date of the spacecraft (YYYY-MM-DD): "));
@@ -22,6 +26,7 @@ public class SpacecraftFactory {
         int fuelLevel = Integer.parseInt(read("Insert the fuelLevel of the spacecraft (number): "));
         int speed = Integer.parseInt(read("Insert the speed of the spacecraft (number) : "));
 
+//        particular fields of the Spacecraft child classes and creation
         switch (type) {
             case "launch" -> {
                 int payload = Integer.parseInt(read("Insert the payload of the spacecraft (number): "));
@@ -48,6 +53,11 @@ public class SpacecraftFactory {
         }
     }
 
+    /**
+     * Simple method to show a prompt and read a string from std
+     * @param prompt a string to show in sout
+     * @return a String read from stdin
+     */
     private static String read(String prompt) {
         Scanner scanner = new Scanner(System.in);
         System.out.print(prompt);
